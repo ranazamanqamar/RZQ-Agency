@@ -1,11 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { Check, Copy, Paperclip, Phone, Mail } from "lucide-react";
+import { ArrowDownLeft, ArrowUp, Check, Copy, Paperclip, Phone, Mail } from "lucide-react";
 import { bookCallHref, site } from "@/lib/site";
 import { FounderPhoto } from "@/components/founder-photo";
 import { LinkedInIcon } from "@/components/linkedin-icon";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
@@ -29,7 +28,6 @@ export function ContactForm() {
       email: String(form.get("email") || ""),
       budget,
       about: String(form.get("about") || ""),
-      city: String(form.get("city") || ""),
     };
 
     const nextErrors: Record<string, string> = {};
@@ -39,7 +37,6 @@ export function ContactForm() {
     }
     if (!payload.budget) nextErrors.budget = "Please select a budget";
     if (!payload.about.trim()) nextErrors.about = "Tell us about your project";
-    if (!payload.city.trim()) nextErrors.city = "City is required";
 
     if (Object.keys(nextErrors).length) {
       setErrors(nextErrors);
@@ -90,8 +87,8 @@ export function ContactForm() {
   }
 
   return (
-    <div className="overflow-hidden rounded-[28px] border border-white/10 lg:grid lg:grid-cols-[0.95fr_1.15fr]">
-      <aside className="bg-gradient-to-b from-[#0d4a4a] via-[#0a3a3a] to-[#071f24] p-6 text-white md:p-8">
+    <div className="grid items-stretch gap-4 lg:grid-cols-[minmax(0,0.86fr)_minmax(0,1.14fr)] lg:gap-5">
+      <aside className="rounded-[32px] bg-[linear-gradient(148deg,rgba(13,150,141,0.9),rgba(13,23,29,0.9))] p-6 text-white md:p-8">
         <div className="flex items-center gap-4">
           <div className="relative">
             <FounderPhoto size={72} />
@@ -107,7 +104,7 @@ export function ContactForm() {
           </div>
           <div>
             <div className="font-serif-italic text-xl text-white">{site.founderName}</div>
-            <div className="text-sm text-white/55">{site.founderTitle}</div>
+            <div className="text-sm text-white/55">Founder &amp; CEO</div>
           </div>
         </div>
 
@@ -127,7 +124,7 @@ export function ContactForm() {
         </ul>
 
         <div className="mt-10">
-          <div className="text-xs uppercase tracking-[0.14em] text-white/45">Project inquiries</div>
+          <div className="text-sm text-white/45">Project inquiries</div>
           <div className="mt-3 flex flex-col gap-3">
             <div className="flex items-center gap-2 rounded-full border border-white/15 bg-black/20 px-4 py-2.5 text-sm">
               <Mail className="h-4 w-4 text-white/60" />
@@ -148,77 +145,70 @@ export function ContactForm() {
               className="flex items-center gap-2 rounded-full border border-white/15 bg-black/20 px-4 py-2.5 text-sm transition hover:border-lime hover:text-lime"
             >
               <Phone className="h-4 w-4" />
-              Book a call · {site.phoneDisplay}
-            </a>
-            <a
-              href={site.linkedin}
-              target="_blank"
-              rel="noreferrer"
-              className="flex items-center gap-2 rounded-full border border-white/15 bg-black/20 px-4 py-2.5 text-sm transition hover:border-lime hover:text-lime"
-            >
-              <LinkedInIcon className="h-4 w-4" />
-              linkedin.com/in/ranazamanqamar
+              Book a call
             </a>
           </div>
         </div>
       </aside>
 
-      <form onSubmit={onSubmit} className="relative bg-white p-6 text-black md:p-8 lg:p-10">
-        <div className="absolute right-5 top-5 z-10 flex items-center gap-2 md:right-8 md:top-8">
-          <a
-            href={site.linkedin}
-            target="_blank"
-            rel="noreferrer"
-            aria-label="LinkedIn"
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-black/10 bg-[#f4f4f8] text-[#0a66c2] shadow-sm transition hover:bg-black hover:text-white"
-          >
-            <LinkedInIcon className="h-4 w-4" />
-          </a>
-          <a
-            href={`mailto:${site.email}`}
-            aria-label="Email"
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-black/10 bg-[#f4f4f8] text-black/70 shadow-sm transition hover:bg-black hover:text-white"
-          >
-            <Mail className="h-4 w-4" />
-          </a>
-          <button
-            type="button"
-            onClick={copyEmail}
-            aria-label="Copy email"
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-black/10 bg-[#f4f4f8] text-black/70 shadow-sm transition hover:bg-black hover:text-white"
-          >
-            {copied ? <Check className="h-4 w-4 text-[#0b0b0b]" /> : <Copy className="h-4 w-4" />}
-          </button>
+      <form
+        onSubmit={onSubmit}
+        className="rounded-[32px] bg-white p-6 text-black md:p-8 lg:p-10"
+      >
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <h1 className="text-[32px] font-medium leading-tight tracking-tight">
+            Tell us about your project
+          </h1>
+          <div className="flex shrink-0 items-center gap-2 text-sm text-black/55">
+            <span>Autofill form via</span>
+            <a
+              href={site.linkedin}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="LinkedIn"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-black/15 text-[#0a66c2] transition hover:border-black hover:bg-black hover:text-white"
+            >
+              <LinkedInIcon className="h-4 w-4" />
+            </a>
+            <a
+              href={`mailto:${site.email}`}
+              aria-label="Email"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-black/15 text-[15px] font-medium text-black/80 transition hover:border-black hover:bg-black hover:text-white"
+            >
+              M
+            </a>
+          </div>
         </div>
-        <h1 className="pr-36 text-3xl font-bold tracking-tight md:text-4xl">
-          Tell us about your project
-        </h1>
 
         <div className="mt-8 grid gap-6 md:grid-cols-2">
           <div>
-            <Label htmlFor="fullName">Full name *</Label>
+            <Label htmlFor="fullName" className="font-normal text-black">
+              Full name*
+            </Label>
             <Input id="fullName" name="fullName" className="mt-2" />
             {errors.fullName && <p className="mt-1 text-xs text-red-600">{errors.fullName}</p>}
           </div>
           <div>
-            <Label htmlFor="email">Corporate email*</Label>
+            <Label htmlFor="email" className="font-normal text-black">
+              Corporate email*
+            </Label>
             <Input id="email" name="email" type="email" className="mt-2" />
             {errors.email && <p className="mt-1 text-xs text-red-600">{errors.email}</p>}
           </div>
         </div>
 
         <div className="mt-6">
-          <Label>What is your budget?*</Label>
-          <div className="mt-3 flex flex-wrap gap-2">
+          <Label className="font-normal text-black">What is your budget?*</Label>
+          <div className="mt-3 flex flex-nowrap gap-2 overflow-x-auto">
             {budgets.map((b) => (
               <button
                 key={b}
                 type="button"
                 onClick={() => setBudget(b)}
-                className={`rounded-full px-4 py-2 text-sm transition ${
+                className={`shrink-0 rounded-full px-4 py-2 text-sm transition ${
                   budget === b
                     ? "bg-black text-white"
-                    : "bg-[#ececf2] text-black/70 hover:bg-[#e0e0ea]"
+                    : "bg-[#f2f2f4] text-black/70 hover:bg-[#e6e6ea]"
                 }`}
               >
                 {b}
@@ -229,39 +219,50 @@ export function ContactForm() {
         </div>
 
         <div className="mt-6">
-          <Label htmlFor="about">About project*</Label>
-          <Textarea id="about" name="about" className="mt-2" rows={3} />
+          <Label htmlFor="about" className="font-normal text-black">
+            About project*
+          </Label>
+          <Textarea id="about" name="about" rows={1} className="mt-2 min-h-11" />
           {errors.about && <p className="mt-1 text-xs text-red-600">{errors.about}</p>}
         </div>
 
-        <div className="mt-6">
-          <Label htmlFor="city">City*</Label>
-          <Input id="city" name="city" className="mt-2" />
-          {errors.city && <p className="mt-1 text-xs text-red-600">{errors.city}</p>}
-        </div>
-
-        <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-8 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
           <label className="inline-flex cursor-pointer items-center gap-2 text-sm text-black/55">
             <Paperclip className="h-4 w-4" />
             Attach files (.pdf, .doc)
             <input type="file" accept=".pdf,.doc,.docx" className="hidden" />
           </label>
-          <Button type="submit" variant="lime" disabled={status === "loading"} className="min-w-[140px]">
-            {status === "loading" ? "Submitting…" : "Submit"}
-          </Button>
+          <p className="max-w-[220px] text-xs leading-snug text-black/40">
+            By submitting this form you agree to our{" "}
+            <a href="/cookie-policy" className="underline">
+              Cookie Policy
+            </a>{" "}
+            and{" "}
+            <a href="/privacy-policy" className="underline">
+              Privacy Policy
+            </a>
+            .
+          </p>
+          <button
+            type="submit"
+            disabled={status === "loading"}
+            className="group inline-flex shrink-0 items-center gap-2 text-sm disabled:opacity-50"
+          >
+            <span className="relative flex h-[52px] w-[52px] items-center justify-center rounded-full bg-lime text-black transition-colors group-hover:bg-white">
+              <ArrowDownLeft
+                className="h-4 w-4 transition-all group-hover:-translate-y-1 group-hover:opacity-0"
+                strokeWidth={2.25}
+              />
+              <ArrowUp
+                className="absolute h-4 w-4 translate-y-1 opacity-0 transition-all group-hover:translate-y-0 group-hover:opacity-100"
+                strokeWidth={2.25}
+              />
+            </span>
+            <span className="rounded-full bg-lime px-7 py-3.5 text-black transition-colors group-hover:bg-white">
+              {status === "loading" ? "Submitting…" : "Submit"}
+            </span>
+          </button>
         </div>
-
-        <p className="mt-4 text-xs text-black/40">
-          By submitting this form you agree to our{" "}
-          <a href="/cookie-policy" className="underline">
-            Cookie Policy
-          </a>{" "}
-          and{" "}
-          <a href="/privacy-policy" className="underline">
-            Privacy Policy
-          </a>
-          .
-        </p>
         {errors.form && <p className="mt-3 text-sm text-red-600">{errors.form}</p>}
       </form>
     </div>

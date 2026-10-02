@@ -29,14 +29,14 @@ export function HeroHoverWord({ children, accent = "lime" }: HeroHoverWordProps)
 
   return (
     <span
-      className="group relative inline-flex"
+      className="group relative inline-flex align-middle"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
       <span
         className={cn(
-          "relative z-10 inline-flex items-center rounded-full border border-white/10 bg-white/5 px-4 py-1 font-serif-italic font-normal text-white/90 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]",
-          "group-hover:-translate-y-1 group-hover:scale-105 group-hover:bg-white/10",
+          "relative z-10 inline-flex items-center rounded-full border border-white/[0.08] bg-[#161616]/90 px-2 py-0 font-serif-italic font-normal text-white/90 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] md:px-2.5",
+          "group-hover:-translate-y-1 group-hover:scale-105 group-hover:bg-[#1c1c1c]",
           colors.text,
         )}
       >

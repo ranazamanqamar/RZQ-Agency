@@ -17,102 +17,131 @@ export type CaseStudy = {
   image?: string;
 };
 
+/** One unused path per slug — never reused across the Works grid. */
 const SLUG_COVERS: Record<string, string> = {
-  "health-hq": "/works/health-hq.png",
-  imed: "/works/imed.png",
-  fundediq: "/works/fundediq.png",
-  "piko-health": "/works/piko-health.png",
+  "advisorworld": "/works/covers/advisorworld.avif",
+  "aethel-finance": "/works/covers/aethel-finance.avif",
+  "altflow": "/works/covers/altflow.avif",
+  "altis": "/works/covers/altis.avif",
+  "astra": "/works/covers/astra.avif",
+  "auralis": "/works/covers/auralis.avif",
+  "blockdb": "/works/covers/blockdb.avif",
+  "born-to-build": "/works/covers/born-to-build.avif",
+  "braix": "/works/covers/braix.avif",
+  "cinex": "/works/covers/cinex.avif",
+  "cognify": "/works/covers/cognify.avif",
+  "cray": "/works/covers/cray.avif",
+  "documotor": "/works/covers/documotor.avif",
+  "enzyme": "/works/covers/enzyme.avif",
+  "evalence": "/works/covers/evalence.avif",
+  "flair": "/works/covers/flair.avif",
+  "flowfunds": "/works/covers/flowfunds.avif",
+  "fundediq": "/works/covers/fundediq.avif",
+  "galaxy": "/works/covers/galaxy.avif",
+  "gigzi": "/works/covers/gigzi.avif",
+  "gradwork": "/works/covers/gradwork.avif",
+  "gt-protocol": "/works/covers/gt-protocol.avif",
+  "guestwise": "/works/covers/guestwise.avif",
+  "hai-cora": "/works/covers/hai-cora.avif",
+  "healium": "/works/covers/healium.avif",
+  "health-hq": "/works/covers/health-hq.avif",
+  "hrworkcycles": "/works/covers/hrworkcycles.avif",
+  "imed": "/works/covers/imed.avif",
+  "infinity": "/works/covers/infinity.avif",
+  "kes-soft": "/works/covers/kes-soft.avif",
+  "kinves": "/works/covers/kinves.jpg",
+  "klasha": "/works/covers/klasha.avif",
+  "knoot": "/works/covers/knoot.jpg",
+  "loca-travel": "/works/covers/loca-travel.avif",
+  "luma": "/works/covers/luma.avif",
+  "lumera": "/works/covers/lumera.avif",
+  "lyynk": "/works/covers/lyynk.avif",
+  "marketspotter": "/works/covers/marketspotter.avif",
+  "mediflow": "/works/covers/mediflow.avif",
+  "metricly": "/works/covers/metricly.avif",
+  "mined": "/works/covers/mined.avif",
+  "minty-swap": "/works/covers/minty-swap.avif",
+  "mojo-cx": "/works/covers/mojo-cx.avif",
+  "moveon": "/works/covers/moveon.avif",
+  "myso": "/works/covers/myso.avif",
+  "netget": "/works/covers/netget.avif",
+  "nexora": "/works/covers/nexora.avif",
+  "nextgpu": "/works/covers/nextgpu.avif",
+  "nonarcissai": "/works/covers/nonarcissai.avif",
+  "ohrbit": "/works/covers/ohrbit.avif",
+  "paypossible": "/works/covers/paypossible.avif",
+  "piifund": "/works/covers/piifund.jpg",
+  "piko-health": "/works/covers/piko-health.avif",
+  "ping": "/works/covers/ping.avif",
+  "players-health": "/works/covers/players-health.avif",
+  "qtalent": "/works/covers/qtalent.avif",
+  "reforge": "/works/covers/reforge.avif",
+  "rydeon": "/works/covers/rydeon.avif",
+  "sageexpress": "/works/covers/sageexpress.avif",
+  "sellution": "/works/covers/sellution.avif",
+  "senzo": "/works/covers/senzo.avif",
+  "sinta": "/works/covers/sinta.avif",
+  "smoothline": "/works/covers/smoothline.avif",
+  "solnex": "/works/covers/solnex.png",
+  "stockgate": "/works/covers/stockgate.avif",
+  "tunnelo": "/works/covers/tunnelo.avif",
+  "unlockscalendar": "/works/covers/unlockscalendar.avif",
+  "vault": "/works/covers/vault.jpg",
+  "velox": "/works/covers/velox.jpg",
+  "voxe": "/works/covers/voxe.avif",
+  "wordpress-products": "/works/covers/wordpress-products.avif",
+  "world-delete": "/works/covers/world-delete.avif",
+  "xblock": "/works/covers/xblock.avif",
+  "xpence": "/works/covers/xpence.avif",
 };
 
-const INDUSTRY_COVERS: Record<string, string[]> = {
-  Healthcare: [
-    "/works/covers/cover-health-1.png",
-    "/works/covers/cover-health-2.png",
-    "/works/covers/cover-health-3.png",
-    "/works/covers/cover-health-4.png",
-    "/blog/mental-health-app-design.png",
-    "/blog/healthcare-branding.png",
-    "/blog/hipaa-website.png",
-    "/blog/healthcare-redesign.png",
-  ],
-  Fintech: [
-    "/works/covers/cover-fintech-1.png",
-    "/works/covers/cover-fintech-2.png",
-    "/works/covers/cover-fintech-3.png",
-    "/works/covers/cover-web-1.png",
-  ],
-  "Web 3.0": [
-    "/works/covers/cover-web3-1.png",
-    "/works/covers/cover-web3-2.png",
-    "/works/covers/cover-web3-3.png",
-  ],
-  Crypto: [
-    "/works/covers/cover-web3-1.png",
-    "/works/covers/cover-web3-2.png",
-    "/works/covers/cover-web3-3.png",
-  ],
-  AI: [
-    "/works/covers/cover-ai-1.png",
-    "/works/covers/cover-ai-2.png",
-    "/works/covers/cover-ai-3.png",
-    "/blog/eu-ai-act-guide.png",
-  ],
-  SaaS: [
-    "/works/covers/cover-saas-1.png",
-    "/works/covers/cover-saas-2.png",
-    "/works/covers/cover-saas-3.png",
-    "/works/covers/cover-web-1.png",
-  ],
-  Cybersecurity: [
-    "/works/covers/cover-cyber-1.png",
-    "/works/covers/cover-cyber-2.png",
-  ],
-  "HR tech": ["/works/covers/cover-hr-1.png", "/works/covers/cover-saas-2.png"],
-};
+const assignedCoverPaths = new Set<string>();
 
-const TAG_COVERS: Record<string, string[]> = {
-  Branding: [
-    "/works/covers/cover-brand-1.png",
-    "/blog/style-guide-vs-brand-guide.png",
-    "/blog/brand-implementation.png",
-    "/blog/stages-branding.png",
-    "/blog/global-branding.png",
-    "/blog/brand-swot.png",
-  ],
-  "Pitch Deck": ["/works/covers/cover-pitch-1.png"],
-  "Pitch deck": ["/works/covers/cover-pitch-1.png"],
-  "Website Design": ["/works/covers/cover-web-1.png", "/blog/conversion-committee.png"],
-  "Website Redesign": ["/works/covers/cover-web-1.png", "/blog/healthcare-redesign.png"],
-  Redesign: ["/works/covers/cover-web-1.png", "/blog/alignment-design.png"],
-};
-
-function hashSlug(slug: string) {
-  let h = 0;
-  for (let i = 0; i < slug.length; i++) h = (h * 31 + slug.charCodeAt(i)) >>> 0;
-  return h;
-}
-
-function resolveCaseImage(item: CaseStudy, index: number): string {
-  if (item.image) return item.image;
-  if (SLUG_COVERS[item.slug]) return SLUG_COVERS[item.slug];
-
-  const pools: string[] = [];
-  for (const tag of item.tags) {
-    if (TAG_COVERS[tag]) pools.push(...TAG_COVERS[tag]);
+function resolveCaseImage(item: CaseStudy): string {
+  const path = item.image ?? SLUG_COVERS[item.slug];
+  if (!path) {
+    throw new Error(`Missing unique Works cover for ${item.slug}`);
   }
-  if (INDUSTRY_COVERS[item.industry]) pools.push(...INDUSTRY_COVERS[item.industry]);
-  if (!pools.length) {
-    pools.push(
-      "/works/covers/cover-saas-1.png",
-      "/works/covers/cover-brand-1.png",
-      "/works/covers/cover-web-1.png",
-    );
+  if (assignedCoverPaths.has(path)) {
+    throw new Error(`Works cover reused: ${path} (${item.slug})`);
   }
-
-  return pools[(hashSlug(item.slug) + index) % pools.length];
+  assignedCoverPaths.add(path);
+  return path;
 }
 
 const caseStudiesRaw: CaseStudy[] = [
+  {
+    slug: "kinves",
+    title: "Kinves",
+    description: "Mobile app design for a personal finance platform",
+    industry: "Fintech",
+    tags: ["Fintech", "Mobile Design"],
+    gradient: "from-lime-500 via-green-700 to-neutral-950",
+  },
+  {
+    slug: "tunnelo",
+    title: "Tunnelo",
+    description: "Brand identity design for a VPN platform",
+    industry: "Cybersecurity",
+    tags: ["Branding"],
+    gradient: "from-slate-500 via-zinc-700 to-black",
+  },
+  {
+    slug: "solnex",
+    title: "Solnex",
+    description: "Digital product design and brand identity for a crypto-first money platform",
+    industry: "Fintech",
+    tags: ["Fintech", "UI/UX Design", "Graphic Design"],
+    gradient: "from-yellow-500 via-amber-700 to-neutral-950",
+  },
+  {
+    slug: "knoot",
+    title: "Knoot",
+    description: "A dashboard design that lifted feature adoption by 37%",
+    industry: "SaaS",
+    tags: ["UI/UX Design"],
+    gradient: "from-blue-500 via-indigo-700 to-slate-950",
+  },
   {
     slug: "myso",
     title: "MYSO Finance",
@@ -193,38 +222,6 @@ const caseStudiesRaw: CaseStudy[] = [
     industry: "Healthcare",
     tags: ["Healthcare", "Web app"],
     gradient: "from-rose-500 via-pink-700 to-slate-950",
-  },
-  {
-    slug: "solnex",
-    title: "Solnex",
-    description: "Digital product design and brand identity for a crypto-first money platform",
-    industry: "Fintech",
-    tags: ["Fintech", "UI/UX Design", "Graphic Design"],
-    gradient: "from-yellow-500 via-amber-700 to-neutral-950",
-  },
-  {
-    slug: "knoot",
-    title: "Knoot",
-    description: "A dashboard design that lifted feature adoption by 37%",
-    industry: "SaaS",
-    tags: ["UI/UX Design"],
-    gradient: "from-blue-500 via-indigo-700 to-slate-950",
-  },
-  {
-    slug: "kinves",
-    title: "Kinves",
-    description: "Mobile app design for a personal finance platform",
-    industry: "Fintech",
-    tags: ["Fintech", "Mobile Design"],
-    gradient: "from-lime-500 via-green-700 to-neutral-950",
-  },
-  {
-    slug: "tunnelo",
-    title: "Tunnelo",
-    description: "Brand identity design for a VPN platform",
-    industry: "Cybersecurity",
-    tags: ["Branding"],
-    gradient: "from-slate-500 via-zinc-700 to-black",
   },
   {
     slug: "nextgpu",
@@ -734,9 +731,21 @@ const caseStudiesRaw: CaseStudy[] = [
   },
 ];
 
+const FLAG_POOL = ["us", "ua", "ae", "pt", "ie", "gb", "nl", "de", "eu", "sg", "au", "ca"] as const;
+
+const seenSlugs = new Set<string>();
+const seenTitles = new Set<string>();
+for (const item of caseStudiesRaw) {
+  if (seenSlugs.has(item.slug)) throw new Error(`Duplicate Works slug: ${item.slug}`);
+  if (seenTitles.has(item.title)) throw new Error(`Duplicate Works title: ${item.title}`);
+  seenSlugs.add(item.slug);
+  seenTitles.add(item.title);
+}
+
 export const cases: CaseStudy[] = caseStudiesRaw.map((item, index) => ({
   ...item,
-  image: resolveCaseImage(item, index),
+  image: resolveCaseImage(item),
+  country: item.country ?? FLAG_POOL[index % FLAG_POOL.length],
 }));
 
 export const featuredCases = cases.filter((c) => c.featured);

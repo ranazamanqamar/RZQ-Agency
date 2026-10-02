@@ -116,6 +116,22 @@ export const pricingFaqs = [
   },
 ];
 
+export const comparisonRows: { feature: string; freelancers: boolean; vendor: boolean }[] = [
+  { feature: "Senior-level expertise", freelancers: false, vendor: true },
+  { feature: "Specialized market knowledge", freelancers: false, vendor: true },
+  { feature: "Clear scope, timeline & cost before start", freelancers: false, vendor: true },
+  { feature: "Fast project start (3–5 days)", freelancers: true, vendor: false },
+  { feature: "3-day free trial", freelancers: false, vendor: false },
+  { feature: "Direct and fast communication", freelancers: true, vendor: false },
+  { feature: "Dedicated project manager", freelancers: false, vendor: true },
+  { feature: "Easy to scale team capacity", freelancers: false, vendor: true },
+  { feature: "Minimal client involvement required", freelancers: false, vendor: true },
+  { feature: "End-to-end design & engineering", freelancers: false, vendor: false },
+  { feature: "Adherence to accessibility and compliance rules", freelancers: false, vendor: true },
+  { feature: "Support for integrations and APIs", freelancers: true, vendor: false },
+  { feature: "Post-launch support", freelancers: false, vendor: true },
+];
+
 export const trustReasons = [
   {
     title: "Proven results",

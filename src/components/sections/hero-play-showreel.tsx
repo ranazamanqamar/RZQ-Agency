@@ -96,19 +96,17 @@ export function HeroPlayShowreel() {
         type="button"
         onClick={() => setOpen(true)}
         aria-label="Play works showreel"
-        className="group/play relative inline-flex h-[2.75rem] w-[5.5rem] shrink-0 overflow-hidden rounded-xl border border-white/15 align-middle shadow-[0_8px_24px_rgba(0,0,0,0.45)] transition hover:scale-[1.03] md:h-[3.25rem] md:w-[6.75rem]"
+        className="group/play relative inline-flex h-16 w-[6.75rem] shrink-0 overflow-hidden rounded-2xl align-middle shadow-[0_8px_24px_rgba(0,0,0,0.45)] transition hover:scale-[1.03] md:h-[4.75rem] md:w-[8.25rem]"
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
+        <span className="absolute inset-0 bg-[#6a52ff]" />
         <img
-          src="/works/piko-health.png"
+          src="/works/covers/nextgpu.avif"
           alt=""
-          className="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover/play:scale-105"
+          className="absolute inset-0 h-full w-full object-cover object-top opacity-70 transition duration-500 group-hover/play:scale-105"
         />
-        <span className="absolute inset-0 bg-black/35" />
-        <span className="absolute bottom-1.5 left-1.5 inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-black/55 px-2 py-0.5 text-[10px] font-medium text-white backdrop-blur md:text-xs">
-          <span className="flex h-4 w-4 items-center justify-center rounded-full bg-white/15">
-            <Play className="h-2 w-2 fill-white text-white" />
-          </span>
+        <span className="absolute bottom-1.5 left-1.5 inline-flex items-center gap-1 rounded-full bg-black/60 px-2 py-0.5 text-[10px] font-medium text-white backdrop-blur">
+          <Play className="h-2 w-2 fill-white text-white" />
           Play
         </span>
       </button>

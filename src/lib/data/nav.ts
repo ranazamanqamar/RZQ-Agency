@@ -7,6 +7,7 @@ export type NavLink = {
 
 export const mainNav = [
   { title: "Works", href: "/works" },
+  { title: "Solutions", href: "/solutions/mvp" },
   { title: "Services", href: "/services" },
   { title: "Industries", href: "/industries" },
   { title: "Pricing", href: "/pricing" },
@@ -54,12 +55,14 @@ export const designServices: NavLink[] = [
 export const developmentServices: NavLink[] = [
   { title: "Web Development", description: "Front-End & Back-End Development", href: "/services/web-development" },
   { title: "MVP Development", description: "MVPs that attract funding", href: "/services/mvp-development" },
+  { title: "WebFlow Development", description: "No-code sites that ship fast", href: "/services/webflow" },
   { title: "Landing page", description: "High-converting website", href: "/services/landing-page-design" },
+  { title: "Mobile Development", description: "Native & cross-platform apps", href: "/services/mobile-development" },
   { title: "Corporate Websites", description: "Built for scale and trust", href: "/services/corporate-website-development" },
   { title: "WOW Websites", description: "Memorable digital experiences", href: "/services/wow-web-design" },
-  { title: "Webflow Development", description: "No-code sites that ship fast", href: "/services/webflow" },
-  { title: "Mobile Development", description: "Native & cross-platform apps", href: "/services/mobile-development" },
 ];
+
+export const chromeServices = [...brandingServices, ...designServices, ...developmentServices];
 
 export const industriesNav: NavLink[] = [
   { title: "Web 3, Blockchain", description: "Crypto, DeFi, DEX, CEX, NFT", href: "/industries/web3" },
@@ -70,6 +73,8 @@ export const industriesNav: NavLink[] = [
   { title: "Healthcare & Wellness", description: "Mental health, Insurance, Fitness", href: "/industries/healthcare" },
   { title: "HR tech", description: "Recruiting, L&D, Workforce Analytics", href: "/industries/hr-tech" },
 ];
+
+export const homepageIndustrySlugs = ["web3", "ai", "saas", "fintech", "healthcare"] as const;
 
 export const footerCompany = [
   { title: "Works", href: "/works" },

@@ -1,38 +1,46 @@
-import Link from "next/link";
-import { bookCallHref, site } from "@/lib/site";
+import { bookCallHref } from "@/lib/site";
 import { PillCta } from "@/components/pill-cta";
-import { awards } from "@/lib/data/testimonials";
 
-export function BookCallBand() {
+const laurels = [
+  { src: "/awards/laurel-clutch.avif", label: "89+ Reviews on Clutch" },
+  { src: "/awards/laurel-upwork.avif", label: "Top Rated Plus Agency on Upwork" },
+  { src: "/awards/laurel-dribbble.avif", label: "Top 50 Trending team on Dribbble" },
+  { src: "/awards/laurel-behance.avif", label: "Projects are Featured on Behance platform" },
+];
+
+export function BookCallBand({
+  blend = false,
+  title = "Ready to scale your business?",
+}: {
+  blend?: boolean;
+  title?: string;
+}) {
   return (
-    <section className="section-pad relative overflow-hidden">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(80,70,255,0.35),transparent_65%)]" />
-      <div className="relative mx-auto max-w-[1100px] px-5 text-center md:px-8">
-        <h2 className="text-3xl font-bold tracking-tight text-white md:text-5xl">
-          Book a free consultation to get clarity, direction, and expert advice you can implement
-          right away.
-        </h2>
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-          <PillCta href={bookCallHref} variant="lime" external>
-            Book a Call · {site.phoneDisplay}
-          </PillCta>
-          <PillCta href="/contact" variant="white">
-            Contact Us
-          </PillCta>
+    <section className={blend ? "section-pad relative" : "book-call-wash section-pad"}>
+      <div className="relative mx-auto max-w-[1100px] px-5 md:px-8">
+        <div className="rounded-[36px] bg-white px-6 py-14 text-center text-black md:px-16 md:py-20">
+          <h2 className="text-4xl font-medium tracking-tight md:text-6xl">{title}</h2>
+          <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-black/80 md:text-xl">
+            Book a free consultation to get clarity, direction, and expert advice you can implement
+            right away.
+          </p>
+          <div className="mt-8 flex justify-center">
+            <PillCta href={bookCallHref} variant="lime" split external>
+              Book a Call
+            </PillCta>
+          </div>
         </div>
-        <div className="mt-10 flex flex-wrap justify-center gap-3">
-          {awards.slice(0, 4).map((a) => (
-            <span key={a} className="pill-tag">
-              {a}
-            </span>
+        <div className="mt-14 grid grid-cols-2 gap-8 md:grid-cols-4">
+          {laurels.map((item) => (
+            <div key={item.label} className="text-center text-white">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={item.src} alt="" className="mx-auto h-16 w-auto object-contain" />
+              <p className="mx-auto mt-3 max-w-[180px] text-sm leading-snug text-white/80">
+                {item.label}
+              </p>
+            </div>
           ))}
         </div>
-        <p className="mt-6 text-sm text-white/45">
-          Prefer email?{" "}
-          <Link href={`mailto:${site.email}`} className="text-lime hover:underline">
-            {site.email}
-          </Link>
-        </p>
       </div>
     </section>
   );

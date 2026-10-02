@@ -6,7 +6,7 @@ const schema = z.object({
   email: z.string().email(),
   budget: z.string().min(1),
   about: z.string().min(1),
-  city: z.string().min(1),
+  city: z.string().optional().default(""),
 });
 
 export async function POST(request: Request) {

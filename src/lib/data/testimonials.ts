@@ -5,6 +5,56 @@ export type Testimonial = {
   company?: string;
 };
 
+export type HomeReview = {
+  company: string;
+  logo: string;
+  quote: string;
+  emphasis: string;
+  name: string;
+  role: string;
+  photo: string;
+};
+
+export const homeReviews: HomeReview[] = [
+  {
+    company: "Mojo CX",
+    logo: "/reviews/mojo.avif",
+    quote: "I was impressed with the high levels of detail and polish for all the features.",
+    emphasis: "high levels of detail",
+    name: "Jimmy Hosang",
+    role: "Founder & CEO",
+    photo: "/works/home-cases/jimmy.avif",
+  },
+  {
+    company: "Tixbase",
+    logo: "/reviews/tixbase.svg",
+    quote: "Their professionalism, dedication, responsiveness, and determination are commendable.",
+    emphasis: "professionalism, dedication",
+    name: "Emil Ljesnjanin",
+    role: "Founder & CEO",
+    photo: "/works/home-cases/emil.png",
+  },
+  {
+    company: "MYSO Finance",
+    logo: "/reviews/myso.svg",
+    quote:
+      "Their expertise and guidance were instrumental. They demonstrated their commitment to creating a product that resonated with our target audience, which led to improved user satisfaction.",
+    emphasis: "commitment",
+    name: "Aetienne Sardon",
+    role: "Founder, MYSO Finance",
+    photo: "/works/home-cases/aetienne.avif",
+  },
+  {
+    company: "Enzyme",
+    logo: "/reviews/enzyme.svg",
+    quote: "Working with RZQ is really smooth in terms of communication and workflow",
+    emphasis: "smooth",
+    name: "Stephane Heip",
+    role: "CMO, Enzyme",
+    photo: "/works/home-cases/stephane.png",
+  },
+];
+
 export const testimonials: Testimonial[] = [
   {
     quote: "I was impressed with the high levels of detail and polish for all the features.",
@@ -60,6 +110,45 @@ export const testimonials: Testimonial[] = [
   },
 ];
 
+export const partnerStories = [
+  {
+    company: "WordPress.com",
+    name: "Ola Olusoga",
+    role: "Vice President at WordPress",
+    quote:
+      "Throughout the entire project all I saw was sheer will to keep pushing forward and adapting to whatever the next request was. Terrific job and we couldn't have done it without you.",
+    photoSrc: "/partners/ola.avif",
+    logoSrc: "/partners/wordpress.svg",
+  },
+  {
+    company: "VOXE",
+    name: "Kirill Onasenko",
+    role: "CEO, VOXE",
+    quote:
+      "We had a feeling that RZQ is not just a contract outsourcing team but part of our startup company. We had super close communication.",
+    photoSrc: "/partners/kirill.avif",
+    logoSrc: "/partners/voxe.svg",
+  },
+  {
+    company: "MYSO Finance",
+    name: "Aetienne Sardon",
+    role: "Founder, MYSO Finance",
+    quote:
+      "Their expertise and guidance were instrumental. They demonstrated their commitment to creating a product that resonated with our target audience, which led to improved user satisfaction.",
+    photoSrc: "/partners/aetienne.avif",
+    logoSrc: "/partners/myso.svg",
+  },
+] as const;
+
+export const footerAwardLogos = [
+  { name: "Clutch", detail: "89+ Reviews on Clutch" },
+  { name: "Dribbble", detail: "Top 50 Trending team on Dribbble" },
+  { name: "Clutch", detail: "Global 100 B2B UI/UX Company" },
+  { name: "Webflow", detail: "Professional partner by Webflow" },
+  { name: "GoodFirms", detail: "Top User Experience team by GoodFirms" },
+  { name: "Behance", detail: "Projects are Featured on Behance" },
+] as const;
+
 export const awards = [
   "89+ Reviews on Clutch",
   "Top Design Company 2025",
@@ -73,6 +162,19 @@ export const awards = [
   "Projects are Featured on Behance platform",
   "Professional partner by Webflow",
 ];
+
+export const awardTiles = [
+  { label: "Top Design Company 2025", src: "/awards/top-design-2025.png" },
+  { label: "Top Digital Design Company 2026", src: "/awards/clutch-top-design.svg" },
+  { label: "Global 100 B2B UI/UX Company by Clutch", src: "/awards/clutch-top-1000.svg" },
+  { label: "Top Rated Plus Agency on Upwork", src: "/awards/upwork-top-rated.webp" },
+  { label: "Champion Company by Clutch", src: "/awards/clutch-global.svg" },
+  { label: "Top UX Strategy Company by Clutch", src: "/awards/clutch-ux-strategy.svg" },
+  { label: "Top User Experience team by GoodFirms", src: "/awards/goodfirms.svg" },
+  { label: "Top 50 Trending team on Dribbble", src: "/awards/dribbble.svg" },
+  { label: "Projects are Featured on Behance platform", src: "/awards/behance.webp" },
+  { label: "Professional partner by Webflow", src: "/awards/webflow.svg" },
+] as const;
 
 export const stats = [
   {

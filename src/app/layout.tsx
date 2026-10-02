@@ -2,13 +2,15 @@ import type { Metadata } from "next";
 import { Libre_Baskerville, Plus_Jakarta_Sans } from "next/font/google";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
+import { FooterSlot } from "@/components/layout/footer-slot";
 import { site } from "@/lib/site";
 import "./globals.css";
 
-const jakarta = Plus_Jakarta_Sans({
-  variable: "--font-jakarta",
+const plusJakarta = Plus_Jakarta_Sans({
+  variable: "--font-plus-jakarta",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800"],
+  weight: ["400", "500", "700"],
+  display: "swap",
 });
 
 const baskerville = Libre_Baskerville({
@@ -30,11 +32,13 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${jakarta.variable} ${baskerville.variable} h-full antialiased`}>
-      <body className="flex min-h-full flex-col bg-[#0b0b0b] font-sans text-white">
+    <html lang="en" className={`${plusJakarta.variable} ${baskerville.variable} h-full antialiased`}>
+      <body className="flex min-h-full flex-col bg-[#0b0b0b] font-sans font-normal text-white">
         <Header />
-        <main className="flex-1 pt-[72px] md:pt-[97px]">{children}</main>
-        <Footer />
+        <main className="flex-1">{children}</main>
+        <FooterSlot>
+          <Footer />
+        </FooterSlot>
       </body>
     </html>
   );

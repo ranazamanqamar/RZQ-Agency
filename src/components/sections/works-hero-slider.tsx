@@ -4,8 +4,10 @@ import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { CountryFlag } from "@/components/country-flag";
+import { getCase } from "@/lib/data/cases";
 
 const DURATION_MS = 4500;
+const SLIDE_SLUGS = ["piko-health", "fundediq", "health-hq", "imed"] as const;
 
 type Slide = {
   slug: string;
@@ -16,37 +18,17 @@ type Slide = {
   description: string;
 };
 
-const slides: Slide[] = [
-  {
-    slug: "piko-health",
-    image: "/works/piko-health.png",
-    tags: ["Healthcare", "Web app"],
-    country: "pt",
-    description:
-      "Branding, landing page, and web app design for a personalized healthcare platform.",
-  },
-  {
-    slug: "fundediq",
-    image: "/works/fundediq.png",
-    tags: ["Fintech", "UI/UX & Brand design"],
-    country: "ae",
-    description: "Branding & UI/UX design for a prop trading platform",
-  },
-  {
-    slug: "health-hq",
-    image: "/works/health-hq.png",
-    tags: ["Healthcare", "UI/UX design"],
-    country: "us",
-    description: "Mobile app redesign for a children's health tracking application.",
-  },
-  {
-    slug: "imed",
-    image: "/works/imed.png",
-    tags: ["Healthcare", "Pitch deck"],
-    country: "ua",
-    description: "Pitch deck design for a national e-health ecosystem",
-  },
-];
+const slides: Slide[] = SLIDE_SLUGS.map((slug) => {
+  const item = getCase(slug);
+  if (!item?.image) throw new Error(`Missing Works cover for slide ${slug}`);
+  return {
+    slug,
+    image: item.image,
+    tags: item.tags.slice(0, 2),
+    country: item.country,
+    description: item.description,
+  };
+});
 
 export function WorksHeroSlider() {
   const [index, setIndex] = useState(0);
@@ -68,37 +50,45 @@ export function WorksHeroSlider() {
 
   return (
     <div
-      className="group/slider relative"
+      className="relative"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      {/* Slide image — zooms on hover of slide OR meta; meta stays put */}
       <Link
         href={`/works/${current.slug}`}
         aria-label={current.description}
-        className={cn(
-          "relative z-10 block overflow-hidden rounded-[24px] shadow-[0_16px_48px_rgba(0,0,0,0.35)]",
-          "origin-bottom transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]",
-          "group-hover/slider:scale-[1.035]",
-        )}
+        className="group/photo relative z-10 block overflow-hidden rounded-[32px] shadow-[0_16px_48px_rgba(0,0,0,0.35)]"
       >
-        <div className="relative aspect-[4/3] overflow-hidden bg-[#0b0b0b]">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            key={current.slug}
-            src={`${current.image}?v=4`}
-            alt={current.description}
-            className="h-full w-full object-cover"
-          />
+        <div className="relative aspect-[16/10] overflow-hidden">
+          <div
+            className="flex h-full transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]"
+            style={{ transform: `translateX(-${index * 100}%)` }}
+          >
+            {slides.map((slide) => (
+              <div
+                key={slide.slug}
+                className="h-full w-full shrink-0 basis-full overflow-hidden"
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={`${slide.image}?v=4`}
+                  alt={slide.description}
+                  className={cn(
+                    "h-full w-full object-cover transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]",
+                    slide.slug === current.slug && "group-hover/photo:scale-[1.04]",
+                  )}
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </Link>
 
-      {/* Meta card — separate, very close; fixed position (no zoom) */}
       <Link
         href={`/works/${current.slug}`}
-        className="relative z-0 mt-1 block rounded-[24px] bg-white px-5 pb-5 pt-4 text-black shadow-[0_12px_40px_rgba(0,0,0,0.25)] md:px-6 md:pb-6 md:pt-5"
+        className="relative z-0 mt-2 block rounded-[28px] bg-white px-6 py-4 text-black shadow-[0_12px_40px_rgba(0,0,0,0.25)]"
       >
-          <div className="flex flex-wrap items-center gap-2">
+          <div className="flex h-8 flex-nowrap items-center gap-2 overflow-hidden">
             {current.tags.map((tag) => (
               <span
                 key={tag}
@@ -108,31 +98,40 @@ export function WorksHeroSlider() {
               </span>
             ))}
             {current.country ? (
-              <span className="inline-flex items-center rounded-full bg-[#ececf2] px-2.5 py-1.5">
+              <span className="inline-flex shrink-0 items-center rounded-full bg-[#ececf2] px-2.5 py-1.5">
                 <CountryFlag code={current.country} />
               </span>
             ) : null}
           </div>
 
-          <p className="mt-3 text-base font-semibold leading-snug tracking-tight text-black md:text-lg">
+          <p className="mt-3 line-clamp-2 min-h-[3rem] text-base font-semibold leading-snug tracking-tight text-black">
             {current.description}
           </p>
 
-          <div className="mt-5 flex gap-1.5">
+          <div className="mt-5 flex gap-1.5" role="group" aria-label="Slide progress">
             {slides.map((slide, i) => (
-              <button
+              <span
                 key={slide.slug}
-                type="button"
+                role="button"
+                tabIndex={0}
                 aria-label={`Go to slide ${i + 1}`}
+                aria-current={i === index ? true : undefined}
                 onClick={(e) => {
                   e.preventDefault();
                   e.stopPropagation();
                   go(i);
                 }}
-                className="h-1.5 flex-1 overflow-hidden rounded-full bg-black/10"
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    go(i);
+                  }
+                }}
+                className="relative h-1 flex-1 cursor-pointer overflow-hidden rounded-full bg-black/10"
               >
                 <span
-                  key={i === index ? progressKey : `idle-${i}`}
+                  key={i === index ? progressKey : `${i}-${index}`}
                   className={cn(
                     "block h-full rounded-full bg-[#3b4dff]",
                     i < index && "w-full",
@@ -145,7 +144,7 @@ export function WorksHeroSlider() {
                       : undefined
                   }
                 />
-              </button>
+              </span>
             ))}
           </div>
         </Link>

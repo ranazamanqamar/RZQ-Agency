@@ -4,7 +4,7 @@ import Link from "next/link";
 import { blogPosts, getPost, getRelatedPosts } from "@/lib/data/blog";
 import { BookCallBand } from "@/components/sections/book-call-band";
 import { BlogCard } from "@/components/sections/blog-card";
-import { site } from "@/lib/site";
+import { BlogBody } from "@/components/sections/blog-body";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -46,26 +46,7 @@ export default async function BlogPostPage({ params }: Props) {
           <p className="mt-4 text-sm text-white/50">
             {post.author} · {post.date}
           </p>
-          <div className="prose prose-invert mt-10 max-w-none space-y-4 text-white/70">
-            <p>{post.excerpt}</p>
-            <p>
-              At {site.name}, our experts tackle design problems day to day across AI, Web3,
-              fintech, and healthcare. This article mirrors the structure and topics published on
-              the reference agency blog so the knowledge section of the site feels complete and
-              credible.
-            </p>
-            <p>
-              Whether you&apos;re looking for inspiration in product storytelling, conversion-focused
-              landing pages, or enterprise design systems, the principles below are drawn from the
-              same playbook used across 250+ digital products.
-            </p>
-            <h2 className="text-2xl font-semibold text-white">Key takeaways</h2>
-            <ul className="list-disc space-y-2 pl-5">
-              <li>Start with user and business outcomes before visual decoration.</li>
-              <li>Use clear hierarchy, generous spacing, and measurable conversion paths.</li>
-              <li>Validate with research, then iterate with senior design oversight.</li>
-            </ul>
-          </div>
+          <BlogBody blocks={post.body} />
         </div>
       </article>
 
